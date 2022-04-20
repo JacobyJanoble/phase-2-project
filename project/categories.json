@@ -1,0 +1,21 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "image": "../images/categoryItem1.jpeg",
+        "title": "Mens Shirts"
+      },
+      {
+        "id": 2,
+        "image": "../images/categoryItem2.jpg",
+        "title": "Womens Shirt"
+
+      },
+      {
+        "id": 3,
+        "image": "../images/categoryItem3.jpeg",
+        "title": "Kids Shirts"
+
+      }
+    ]
+  }
