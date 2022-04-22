@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+import { NavLink } from "react-router-dom";
+
+import {useState} from 'react';
+
 
 const Container = styled.div`
   flex: 1;
@@ -47,7 +51,11 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
+        <nav>
+        <NavLink to='/ProductList'>
         <Button>SHOP NOW</Button>
+        </NavLink>
+        </nav>
       </Info>
     </Container>
   );

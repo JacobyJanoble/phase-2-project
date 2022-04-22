@@ -1,5 +1,6 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { NavLink} from 'react-router-dom'
 import React from "react";
 import styled from "styled-components";
 
@@ -49,8 +50,9 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-
+  color: black
 `;
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -63,10 +65,15 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-
+  color: black
 `;
 
+
+
+
 const Navbar = () => {
+
+
   return (
     <Container>
       <Wrapper>
@@ -77,17 +84,36 @@ const Navbar = () => {
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
+
+        <nav>
+        <NavLink to="/">
         <Center>
           <Logo>ReactCo</Logo>
         </Center>
+        </NavLink>
+        </nav>
+
         <Right>
+          <nav>
+          <NavLink to="/Register">
           <MenuItem>REGISTER</MenuItem>
+          </NavLink>
+          </nav>
+
+          <nav>
+          <NavLink to="/Login">
           <MenuItem>SIGN IN</MenuItem>
+          </NavLink>
+          </nav>
+          <nav>
+          <NavLink to="/Cart">
           <MenuItem>
             <Badge color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
+          </NavLink>
+          </nav>
         </Right>
       </Wrapper>
     </Container>

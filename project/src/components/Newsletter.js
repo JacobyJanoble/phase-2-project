@@ -1,6 +1,8 @@
 import { Send } from "@material-ui/icons";
 import styled from "styled-components";
 
+import {useState} from 'react'
+
 
 const Container = styled.div`
   height: 60vh;
@@ -45,16 +47,60 @@ const Button = styled.button`
 `;
 
 const Newsletter = () => {
+
+  const [emails, setEmail] = useState({email: ''})
+
+  const handleChange = (e) => {
+
+    setEmail({
+      email: e.target.value,
+    })
+    console.log(e)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        email: emails.email
+      }),
+    };
+
+    fetch('http://localhost:3000/emails', configObj)
+    .then(resp => resp.json())
+    .then((data) => {
+      setEmail(data)
+      setEmail("")
+    })
+
+
+  }
+
+
+
   return (
     <Container>
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
+      <form onSubmit={handleSubmit}>
       <InputContainer>
-        <Input placeholder="Your email" />
-        <Button>
+        <Input placeholder="Your email"
+        text="text"
+        onChange={handleChange}
+        name="email"
+        value={emails.email}
+        />
+
+        <Button type="submit">
           <Send />
         </Button>
       </InputContainer>
+      </form>
     </Container>
   );
 };

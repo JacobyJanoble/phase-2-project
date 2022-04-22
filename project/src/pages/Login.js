@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import NavBar from "../components/NavBar"
+import NavBar from "../components/NavBar";
+import {useState} from 'react';
+
 
 
 const Container = styled.div`
@@ -58,14 +60,52 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+
+
 const Login = () => {
+
+  const [login, setLogin] = useState({
+    username: '',
+    password: '',
+  })
+
+  // function handleUsername(event){
+  //   setLogin({
+  //     ...login,
+  //     username: event.target.value,
+  //   });
+  // }
+
+  // function handlePassword(event){
+  //   setLogin({
+  //     ...login,
+  //     lastname: event.target.value
+  //   });
+  // }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(login)
+    setLogin(login)
+  }
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setLogin({
+      ...login,
+      [name]: value
+    })
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
+        <Form onSubmit={handleSubmit}>
+          <Input type='text' name='username'onChange={handleChange} value={login.username} placeholder="username" />
+          <Input type='text' name='password' onChange={handleChange} value={login.password} placeholder="password" />
           <Button>LOGIN</Button>
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>

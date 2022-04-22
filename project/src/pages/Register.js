@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import {useState} from 'react';
+
 
 const Container = styled.div`
   width: 100vw;
@@ -55,17 +57,43 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [register, setRegister] = useState({
+    name: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    password: '',
+    confirm: '',
+  })
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(register)
+    setRegister(register)
+  }
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setRegister({
+      ...register,
+      [name]: value
+    })
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+        <Form onSubmit={handleSubmit}>
+          <Input type='text' name='name' onChange={handleChange} value={register.name} placeholder="name" />
+          <Input type='text' name='lastName' onChange={handleChange} value={register.lastName} placeholder="last name" />
+          <Input type='text' name='userName' onChange={handleChange} value={register.userName} placeholder="username" />
+          <Input type='text' name='email' onChange={handleChange} value={register.email} placeholder="email" />
+          <Input type='text' name='password' onChange={handleChange} value={register.password} placeholder="password" />
+          <Input type='text' name='confirm' onChange={handleChange} value={register.confirm} placeholder="confirm password" />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

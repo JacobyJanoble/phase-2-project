@@ -1,7 +1,8 @@
 
 import styled from "styled-components";
-import { popularProducts } from "../data";
+// import { popularProducts } from "../data";
 import Product from "./Product";
+import {useState, useEffect} from 'react';
 
 const Container = styled.div`
     padding: 20px;
@@ -11,9 +12,20 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+  const [product, setProduct] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/popularProducts')
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data)
+      setProduct(data)
+    })
+  }, [])
+
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {product.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>
